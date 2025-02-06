@@ -2,23 +2,27 @@
 import Image from "next/image";
 import LOGO from "../../images/movie.jpg";
 import Link from "next/link";
-import { useSelector, useDispatch } from "react-redux";
-import { setIsLoggedIn } from "@/app/redux/movieSlicer";
 import { useRouter } from "next/navigation";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useState, useEffect } from "react";
 
 const NavBar = () => {
-  const { isLogin } = useSelector((state) => state.movie);
-  const data = useSelector((state=> state))
-  const dispatch = useDispatch();
-  const router = useRouter();
-  
-  const handleLogout = () =>{
-    dispatch(setIsLoggedIn(false))
-    router.push("/")
-  }
+  const [login, setLogin] = useState(null); 
 
-  console.log(data,"isLogin")
+  useEffect(() => {
+    const savedLoginState = (typeof window !== "undefined" && window.localStorage)
+      ? JSON.parse(localStorage.getItem("isLogin"))
+      : false;
+    setLogin(savedLoginState);
+  }, []); 
+
+  const handleLogout = () => {
+    localStorage.setItem("isLogin", JSON.stringify(false));
+    setLogin(false);
+    window.location.reload();
+  };
+
+  
 
   return (
     <div className="bg-[#000000] h-[100px] text-white flex justify-between align-middle px-14">
@@ -44,23 +48,19 @@ const NavBar = () => {
           </li>
         </ul>
       </div>
-      {!isLogin ? (
+      {!login ? (
         <div className="md:flex justify-center text-[16px] hidden   items-center h-full gap-4">
           <Link href={"/login"}>
             <button className="bg-blue-500 p-2 rounded-full w-[100px]">
               Login
             </button>
           </Link>
-          <button
-            onClick={() => dispatch(setIsLoggedIn(false))}
-            className="bg-[#fd5c63] p-2 rounded-full w-[100px]"
-          >
+          <button className="bg-[#fd5c63] p-2 rounded-full w-[100px]">
             Sign up
           </button>
         </div>
       ) : (
         <div className="flex justify-center text-[16px]  items-center h-full gap-4">
-        
           <p className="h-full flex justify-center items-center">
             Welcome User
           </p>
@@ -74,7 +74,7 @@ const NavBar = () => {
         </div>
       )}
       <div className="h-full flex md:hidden justify-center items-center">
-      <GiHamburgerMenu size={20}/>
+        <GiHamburgerMenu size={20} />
       </div>
     </div>
   );

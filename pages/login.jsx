@@ -1,16 +1,17 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsLoggedIn } from "../app/redux/movieSlicer";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const dispatch = useDispatch();
   const router = useRouter();
-  const isLogin = useSelector((state) => state.movie.isLogin);
+  const savedLoginState =
+    typeof window !== "undefined" && window.localStorage
+      ? localStorage.getItem("isLogin")
+      : false;
+  const [login, setLogin] = useState(savedLoginState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,13 +22,13 @@ const Login = () => {
     setError("");
 
     if (email === "admin@gmail.com" && password === "admin") {
-      dispatch(setIsLoggedIn(true));
+      localStorage.setItem("isLogin", JSON.stringify(true));
+      setLogin(true);
       router.push("/");
-    }
-    else{
+    } else {
       setError("Your Password or Email is incorrect");
-      setEmail("")
-      setPassword("")
+      setEmail("");
+      setPassword("");
     }
   };
 

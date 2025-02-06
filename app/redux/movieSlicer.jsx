@@ -23,7 +23,6 @@ export const movieSlice = createSlice({
     data: null,
     error: false,
     currentPage: 1,
-    isLogin: false,
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovie.pending, (state, action) => {
@@ -37,14 +36,7 @@ export const movieSlice = createSlice({
       state.error = true;
     });
   },
-  reducers: {
-    setIsLoggedIn(state, action) {
-      if (typeof window !== "undefined" && window.localStorage) {
-        localStorage.setItem("isLogin", JSON.stringify(action.payload));
-      }
-    },
-  },
+ 
 });
 
-export const { setIsLoggedIn } = movieSlice.actions;
 export default movieSlice.reducer;
