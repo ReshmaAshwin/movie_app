@@ -1,0 +1,51 @@
+{
+    "sidebar": [
+      {
+        "title": "Dashboard",
+        "icon": "dashboard-icon",
+        "subheadings": [
+          {
+            "title": "Overview",
+            "link": "/dashboard/overview"
+          },
+          {
+            "title": "Statistics",
+            "link": "/dashboard/statistics"
+          }
+        ]
+      },
+      {
+        "title": "Settings",
+        "icon": "settings-icon",
+        "subheadings": [
+          {
+            "title": "Profile",
+            "link": "/settings/profile"
+          },
+          {
+            "title": "Privacy",
+            "link": "/settings/privacy"
+          },
+          {
+            "title": "Notifications",
+            "link": "/settings/notifications"
+          }
+        ]
+      },
+      {
+        "title": "Help",
+        "icon": "help-icon",
+        "subheadings": [
+          {
+            "title": "FAQ",
+            "link": "/help/faq"
+          },
+          {
+            "title": "Contact Support",
+            "link": "/help/contact"
+          }
+        ]
+      }
+    ]
+  }
+  

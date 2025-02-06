@@ -11,7 +11,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      textUnderlineOffset: {
+        2: "2px",
+        4: "4px",
+        "-2": "-2px",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
