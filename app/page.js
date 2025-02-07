@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <div className="sm:px-5 md:px-20 lg:px-20">
+      <div className="sm:px-10 md:px-20 lg:px-20">
         <MovieList />
       </div>
     </>

@@ -105,7 +105,7 @@ const MovieList = () => {
             <ul className="flex flex-wrap justify-center gap-5">
               {movies.map((movie) => (
                 <li
-                  className="mb-2 md:w-[200px]  w-[300px] p-2 gap-6 shadow-md transform transition-all hover:scale-105"
+                  className="mb-2 md:w-[300px] lg:w-[200px]  w-[250px] p-2 gap-6 shadow-md transform transition-all hover:scale-105"
                   key={movie.id}
                   onClick={()=> handlerouting()}
                 >
