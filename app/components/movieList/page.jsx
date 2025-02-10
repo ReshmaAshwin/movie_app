@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-
 import { useDispatch, useSelector } from "react-redux";
+
 import { fetchMovie } from "../../redux/movieSlicer";
 import { getYear } from "../../utils/utils";
 import LoadingSpinner from "../spinner/page";
+import Link from "next/link";
 
 const MovieList = () => {
   const [query, setQuery] = useState("");
@@ -73,12 +74,12 @@ const MovieList = () => {
   
 
   return (
-    <div>
+    <div className="min-h-screen">
       <div className="App">
         <form className="mt-5">
           <div className="flex justify-center align-middle">
             <div
-              className="border flex justify-between align-middle border-[#adabab] px-4 py-2
+              className="border flex justify-between bg-white align-middle border-[#adabab] px-4 py-2
              rounded-full  md:w-1/2 sm:w-4/3"
             >
               <input
@@ -107,8 +108,8 @@ const MovieList = () => {
                 <li
                   className="mb-2 md:w-[300px] lg:w-[200px]  w-[250px] p-2 gap-6 shadow-md transform transition-all hover:scale-105"
                   key={movie.id}
-                  onClick={()=> handlerouting()}
                 >
+                  <Link href={`movie/${movie.id}`}>
                   <div className="h-[300px] flex justify-center align-middle">
                     <img
                       className="w-full"
@@ -117,17 +118,21 @@ const MovieList = () => {
                       width={100}
                     />
                   </div>
-                  <h3 className="text-[20px] font-bold mt-2 truncate">
+                
+                  <h3 className="text-[20px] font-bold mt-2 truncate hover:underline">
                     {movie.title}
                   </h3>
+
                   <p className="text-[14px] text-[#858383]">
                     ({getYear(movie.release_date)})
                   </p>
                   {
                     movie.overview ? (<p className=" text-[12px] line-clamp-3">{movie.overview}</p>) : <p className="text-[12px]"> No description available</p>
                   }
+                </Link>
                   
                 </li>
+
               ))}
             </ul>
           ) : (
